@@ -12,7 +12,7 @@
 | Method  | Endpoint | Description |
 -------------------------|--------------------------|---------------|
 |POST | (xxx_xxx)/youtube/getTitle | Gets title back of the Video  |
-|POST  | (xxx_xxx)/youtube/downloadMp4 | Downloads an Mp4 video of the highest available quality  |
+|POST  | (xxx_xxx)/youtube/downloadMp4 | Downloads an Mp4 video at 360p (Other qualities soon)  |
 
 ## Usage
 
