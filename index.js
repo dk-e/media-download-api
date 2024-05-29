@@ -1,12 +1,15 @@
 const express = require('express');
 const cors = require('cors');
+const morgan = require('morgan')
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors()); // Enable CORS for all routes
+app.use(morgan('dev'))
+
+app.use(cors({ origin: "*" })) // default
 
 // Handle preflight requests
 app.options('*', cors());
