@@ -9,10 +9,12 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(morgan('dev'))
 
-app.use(cors({ origin: "*" })) // default
+app.use(cors({ 
+    origin: '*', 
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 
-// Handle preflight requests
-app.options('*', cors());
 
 const youtubeRoutes = require("./api/youtube.js");
 app.use("/youtube", youtubeRoutes);
