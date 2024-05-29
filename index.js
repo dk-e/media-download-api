@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'))
 
 app.use(cors({ 
-    origin: 'https://linkify.gg', 
+    origin: ["https://linkify.gg", "*"], 
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
