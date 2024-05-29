@@ -15,7 +15,6 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
-
 const youtubeRoutes = require("./api/youtube.js");
 app.use("/youtube", youtubeRoutes);
 
