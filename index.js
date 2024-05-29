@@ -18,7 +18,8 @@ app.use(cors({ origin: "*" })) // default
 
 app.use((req, res, next) => {
     res.setHeader(
-        "Access-Control-Allow-Origin"
+        "Access-Control-Allow-Origin",
+        accessControlAllowOriginValue
     );
     res.setHeader(
         "Access-Control-Allow-Headers",
