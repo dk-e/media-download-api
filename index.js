@@ -5,18 +5,14 @@ const morgan = require('morgan')
 const app = express();
 
 app.use(cors({ 
-    origin: ["https://linkify.gg", "*"], 
+    origin: "https://linkify.gg", // Allow requests only from this origin
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
-// app.use(cors({ origin: "*" })) // default
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.use(morgan('dev'))
-
+app.use(morgan('dev'));
 
 const youtubeRoutes = require("./api/youtube.js");
 app.use("/youtube", youtubeRoutes);
