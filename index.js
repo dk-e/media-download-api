@@ -4,13 +4,13 @@ const morgan = require('morgan')
 
 const app = express();
 
-// app.use(cors({ 
-//     origin: ["https://linkify.gg", "*"], 
-//     methods: ['GET', 'POST'],
-//     allowedHeaders: ['Content-Type', 'Authorization'],
-// }));
+app.use(cors({ 
+    origin: ["https://linkify.gg", "*"], 
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 
-app.use(cors({ origin: "*" })) // default
+// app.use(cors({ origin: "*" })) // default
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
