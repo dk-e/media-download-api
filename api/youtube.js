@@ -8,6 +8,7 @@ const path = require('path')
 // Route base/youtubeMp4
 
 router.route('/getTitle').post(async (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     try {
         const videoUrl = req.body.link;
         if(!ytdl.validateURL)
@@ -24,6 +25,7 @@ router.route('/getTitle').post(async (req, res) => {
 })
 
 router.route('/downloadMp4').post(async (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     try {
         const videoUrl = req.body.link
 
