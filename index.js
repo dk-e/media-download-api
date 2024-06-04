@@ -12,7 +12,11 @@ app.use(morgan('dev'));
 const youtubeRoutes = require("./api/youtube.js");
 app.use("/youtube", youtubeRoutes);
 
-app.use(cors());
+app.use(cors({ 
+    origin: "*", // Allow requests only from this origin
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 
 const port = 5000;
 app.listen(port, function () {
