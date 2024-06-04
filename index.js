@@ -13,7 +13,7 @@ const youtubeRoutes = require("./api/youtube.js");
 app.use("/youtube", youtubeRoutes);
 
 app.use(cors({ 
-    origin: false,
+    origin: "*", // Allow requests only from this origin
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
