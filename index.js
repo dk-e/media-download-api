@@ -16,6 +16,7 @@ app.use(cors({
     origin: "*", // Allow requests only from this origin
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
 }));
 
 const port = 5000;
