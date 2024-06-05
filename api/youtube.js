@@ -42,7 +42,8 @@ router.route('/downloadMp4').post(async (req, res) => {
 
         const title = info.videoDetails.title; // save title of the video
 
-        const videoPath = path.join(process.cwd(), "temp", `${title}.mp4`) // choosing filename
+        const videoPath = path.join(process.cwd(), "temp", `${encodeURI(title)}.mp4`) // choosing filename
+        console.log(videoPath)
 
         // Initialize download and put it into the path
         const videoWriteStream = fs.createWriteStream(videoPath);
