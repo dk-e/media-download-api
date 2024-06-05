@@ -5,11 +5,7 @@ const morgan = require('morgan')
 const app = express();
 
 app.use(cors({ 
-    origin: "*", // Allow requests only from this origin
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
-    preflightContinue: false,
+    origin: "*",
 }));
 
 app.use(express.json());
