@@ -11,8 +11,9 @@
 
 | Method  | Endpoint | Description |
 -------------------------|--------------------------|---------------|
-|POST | (xxx_xxx)/youtube/getTitle | Gets title back of the Video  |
-|POST  | (xxx_xxx)/youtube/downloadMp4 | Downloads an Mp4 video at 360p (Other qualities soon)  |
+| POST | (xxx_xxx)/youtube/getTitle | Gets title back of the Video  |
+| POST  | (xxx_xxx)/youtube/downloadMp4 | Downloads an Mp4 video at 360p (Other qualities soon)  |
+| POST | (xxx_xxx)/youtube/downloadMp3 | Downloads an Mp3 audio format |
 
 ## Usage
 
@@ -34,14 +35,6 @@
         {
             responseType: 'blob'
         });
-
-        // This is so when the user downloads, it directly downloads and doesnt redirect to another page
-        const url = window.URL.createObjectURL(new Blob([video.data])) // Create a URL using the blob data
-        const link = document.createElement("a"); // Create a fake a tag
-        link.href = url; // set href to the fake blob
-        link.setAttribute('download', `${title.data}.mp4`) // give it the attribute download, and make sure its mp4
-        document.body.appendChild(link); // append the link to the document
-        link.click(); // fake click
 
         console.log(title.data)
         } catch (error) {
