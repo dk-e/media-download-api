@@ -58,7 +58,42 @@ router.route('/downloadMp4').post(async (req, res) => {
 
     } catch (error) {
         console.log(error)
-        res.status(500).send("Internal server error")
+        res.status(500).send("Internal server error - please contact an admin")
+    }
+});
+
+router.route('/downloadMp3').post(async (req, res) => {    
+    try {
+        const videoUrl = req.body.link;
+
+        if(!ytdl.validateURL(videoUrl))
+            return res.status(500).send("Invalid URL")
+    
+        const options = {
+            quality: "highestaudio",
+            filter: "audio"
+        };
+
+        const info = await ytdl.getInfo(videoUrl)
+        console.log(info)
+
+        const title = info.videoDetails.title;
+
+        const videoPath = path.join(process.cwd(), "temp", `${encodeURI(title)}.mp4`) 
+        console.log(videoPath)
+
+        const videoWriteStream = fs.createWriteStream(videoPath);
+        ytdl(videoUrl, options).pipe(videoWriteStream);
+
+        videoWriteStream.on('finish', () => {
+            res.download(videoPath, `${title}.mp3`, () => {
+                fs.unlinkSync(videoPath)
+            })
+        })
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).send("Internal Server Error - please contact an admin")
     }
 })
 
