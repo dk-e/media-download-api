@@ -18,7 +18,7 @@
 ## Usage
 
 ### Examples
-<p>Getting Title and Downloading Mp4 of video - added functionality so it downloads onClick and doesn't redirect. </p>
+<p>Getting Title and Downloading Mp4 of video. </p>
 
 ```js
     async function handleDownload() {
