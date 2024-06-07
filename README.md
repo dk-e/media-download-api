@@ -26,15 +26,14 @@
     
         try {
 
-        const title = await axios.post('http://localhost:5000/youtube/getTitle', 
-            { link: youtubeURL }
-        );
+            const title = await axios.post('http://localhost:5000/youtube/getTitle', 
+                { link: youtubeURL }
+            );
 
         const video = await axios.post('http://localhost:5000/youtube/downloadMp4', 
-        { link: youtubeURL }, 
-        {
-            responseType: 'blob'
-        });
+                { link: youtubeURL }, 
+                { responseType: 'blob' }
+            );
 
         console.log(title.data)
         } catch (error) {
