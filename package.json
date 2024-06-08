@@ -1,29 +1,32 @@
 {
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.19.2",
-    "ffmpeg": "^0.0.4",
-    "ffmpeg-static": "^5.2.0",
-    "fluent-ffmpeg": "^2.1.3",
-    "http-proxy": "^1.18.1",
-    "morgan": "^1.10.0",
-    "nodemon": "^3.1.1",
-    "ytdl-core": "^4.11.5"
-  },
   "name": "media-download-api",
-  "description": "An API I've created originally to use for my link utility site",
-  "version": "1.0.2",
-  "main": "index.js",
+  "version": "1.0.0",
+  "description": "REST API to download yt to mp4/3",
+  "main": "src/index.ts",
   "scripts": {
-    "server": "nodemon index.js"
+    "dev": "nodemon --exec ts-node --files src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "format": "prettier --write \"**/*.{js,ts,md}\"",
+    "lint": "eslint . --ext .js,.ts",
+    "lint:fix": "eslint . --ext .js,.ts --fix"
   },
-  "keywords": [
-    "api",
-    "youtube",
-    "downloader",
-    "media",
-    "downloader"
-  ],
-  "author": "Damon Windsor",
-  "license": "MIT"
+  "author": "dan",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@types/body-parser": "^1.19.5",
+    "@types/express": "^4.17.21",
+    "@types/fluent-ffmpeg": "^2.1.24",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "fluent-ffmpeg": "^2.1.3",
+    "ytdl": "^1.4.1"
+  }
 }
