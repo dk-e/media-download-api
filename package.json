@@ -1,32 +1,38 @@
 {
-  "name": "media-download-api",
-  "version": "1.0.0",
-  "description": "REST API to download yt to mp4/3",
-  "main": "src/index.ts",
-  "scripts": {
-    "dev": "nodemon --exec ts-node --files src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "format": "prettier --write \"**/*.{js,ts,md}\"",
-    "lint": "eslint . --ext .js,.ts",
-    "lint:fix": "eslint . --ext .js,.ts --fix"
-  },
-  "author": "dan",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "@types/body-parser": "^1.19.5",
-    "@types/express": "^4.17.21",
-    "@types/fluent-ffmpeg": "^2.1.24",
-    "body-parser": "^1.20.2",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "fluent-ffmpeg": "^2.1.3",
-    "ytdl": "^1.4.1"
-  }
+    "name": "media-download-api",
+    "version": "1.0.0",
+    "description": "REST API to download yt to mp4/3",
+    "main": "src/index.ts",
+    "scripts": {
+        "dev": "nodemon --exec ts-node --files src/index.ts",
+        "build": "tsc",
+        "start": "node dist/index.js",
+        "format": "prettier --write \"**/*.{js,ts,md}\"",
+        "lint": "eslint . --ext .js,.ts",
+        "lint:fix": "eslint . --ext .js,.ts --fix"
+    },
+    "author": "dan",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/bun": "latest"
+    },
+    "peerDependencies": {
+        "typescript": "^5.0.0"
+    },
+    "dependencies": {
+        "@types/body-parser": "^1.19.5",
+        "@types/express": "^4.17.21",
+        "@types/fluent-ffmpeg": "^2.1.24",
+        "@typescript-eslint/eslint-plugin": "^7.12.0",
+        "@typescript-eslint/parser": "^7.12.0",
+        "body-parser": "^1.20.2",
+        "dotenv": "^16.4.5",
+        "eslint": "^9.4.0",
+        "express": "^4.19.2",
+        "fluent-ffmpeg": "^2.1.3",
+        "nodemon": "^3.1.3",
+        "prettier": "^3.3.1",
+        "ts-node": "^10.9.2",
+        "ytdl": "^1.4.1"
+    }
 }
