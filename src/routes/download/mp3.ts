@@ -2,13 +2,15 @@ import express from "express";
 import ytdl from "ytdl-core";
 import fs from "fs";
 import path from "path";
+import { promises as fsPromises } from "fs";
+
 const router = express.Router();
 
 router.post("/", async (req, res) => {
     try {
         const videoUrl = req.body.link;
 
-        if (!ytdl.validateURL(videoUrl)) return res.status(500).json({ error: "Invalid URL" });
+        if (!ytdl.validateURL(videoUrl)) return res.status(400).json({ error: "Invalid URL" });
 
         const options: ytdl.downloadOptions = {
             quality: "highestaudio",
@@ -18,23 +20,34 @@ router.post("/", async (req, res) => {
         const info = await ytdl.getInfo(videoUrl);
         console.log(info);
 
-        const title = info.videoDetails.title;
+        const title = info.videoDetails.title.replace(/[^\w\s]/gi, ""); // Remove special characters
+        const tempDir = path.join(process.cwd(), "temp");
 
-        const videoPath = path.join(process.cwd(), "temp", `${encodeURI(title)}.mp4`);
-        console.log(videoPath);
+        await fsPromises.mkdir(tempDir, { recursive: true });
 
-        const videoWriteStream = fs.createWriteStream(videoPath);
-        ytdl(videoUrl, options).pipe(videoWriteStream);
+        const audioPath = path.join(tempDir, `${encodeURI(title)}.mp3`);
+        console.log(audioPath);
 
-        videoWriteStream.on("finish", () => {
-            res.download(videoPath, `${title}.mp3`, () => {
-                fs.unlinkSync(videoPath);
+        const audioWriteStream = fs.createWriteStream(audioPath);
+        ytdl(videoUrl, options).pipe(audioWriteStream);
+
+        audioWriteStream.on("finish", () => {
+            res.download(audioPath, `${title}.mp3`, async () => {
+                await fsPromises.unlink(audioPath);
+            });
+        });
+
+        audioWriteStream.on("error", (error) => {
+            console.error("Error writing audio file:", error);
+            res.status(500).json({
+                success: false,
+                message: "Error writing audio file",
             });
         });
     } catch (error) {
         console.log(error);
         res.status(500).json({
-            success: "false",
+            success: false,
             message: "Internal Server Error - please contact an admin",
         });
     }
