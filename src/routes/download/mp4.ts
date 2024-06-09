@@ -1,9 +1,8 @@
 import express from "express";
 import ytdl from "ytdl-core";
-import ffmpeg from "fluent-ffmpeg";
+import ffmpeg from "ffmpeg";
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
 import { promises as fsPromises } from "fs";
 
 const router = express.Router();
